@@ -68,7 +68,7 @@ CREATE TABLE faturas_matriculas(
     data_vencimento DATE NOT NULL,
     valor NUMERIC(10,2) NOT NULL CHECK (valor >= 0),
     data_pagamento TIMESTAMP,
-    data_cancelamento DATE,
+    data_cancelamento TIMESTAMP,
     status VARCHAR(20) NOT NULL DEFAULT 'ABERTA',
     CHECK (status IN ('ABERTA', 'PAGA', 'CANCELADA', 'VENCIDA')),
     UNIQUE (matricula_id, data_vencimento)
