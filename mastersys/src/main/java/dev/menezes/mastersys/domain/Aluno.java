@@ -27,6 +27,7 @@ public class Aluno {
     private String telefone;
     private String celular;
     private String email;
+    private String observacao;
     private String endereco;
     private String numero;
     private String complemento;
