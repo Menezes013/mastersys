@@ -4,6 +4,7 @@ package dev.menezes.mastersys.controller;
 import dev.menezes.mastersys.dto.AlunoRequest;
 import dev.menezes.mastersys.dto.AlunoResponse;
 import dev.menezes.mastersys.service.AlunoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +24,7 @@ public class AlunoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AlunoResponse cadastrar(@RequestBody AlunoRequest alunoRequest) {
+    public AlunoResponse cadastrar(@RequestBody @Valid AlunoRequest alunoRequest) {
         return alunoService.cadastrar(alunoRequest);
     }
 
@@ -38,7 +39,7 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public AlunoResponse atualizar(@PathVariable Long id, @RequestBody AlunoRequest alunoRequest) {
+    public AlunoResponse atualizar(@PathVariable Long id, @RequestBody @Valid AlunoRequest alunoRequest) {
         return alunoService.atualizar(id, alunoRequest);
     }
 

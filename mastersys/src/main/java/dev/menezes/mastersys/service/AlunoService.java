@@ -3,6 +3,7 @@ package dev.menezes.mastersys.service;
 import dev.menezes.mastersys.domain.Aluno;
 import dev.menezes.mastersys.dto.AlunoRequest;
 import dev.menezes.mastersys.dto.AlunoResponse;
+import dev.menezes.mastersys.exception.RegraNegocioException;
 import dev.menezes.mastersys.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +18,7 @@ public class AlunoService {
 
     public AlunoResponse cadastrar(AlunoRequest request) {
         if (request.email() != null && alunoRepository.existsByEmail(request.email())) {
-            throw new RuntimeException("Já existe um aluno cadastrado com esse email");
+            throw new RegraNegocioException("Já existe um aluno cadastrado com esse email");
         }
 
         Aluno aluno = request.toEntity();
@@ -49,7 +50,7 @@ public class AlunoService {
     }
 
     private Aluno buscarEntidadePorId(Long id) {
-        return alunoRepository.findById(id).orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+        return alunoRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Aluno não encontrado"));
     }
 
 
