@@ -1,10 +1,12 @@
 package dev.menezes.mastersys.service;
 
 import dev.menezes.mastersys.domain.Aluno;
+import dev.menezes.mastersys.dto.AlunoFiltroRequest;
 import dev.menezes.mastersys.dto.AlunoRequest;
 import dev.menezes.mastersys.dto.AlunoResponse;
 import dev.menezes.mastersys.exception.RegraNegocioException;
 import dev.menezes.mastersys.repository.AlunoRepository;
+import dev.menezes.mastersys.specification.AlunoSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +29,10 @@ public class AlunoService {
 
     }
 
-    public Page<AlunoResponse> listar(Pageable pageable) {
-     return alunoRepository.findAll(pageable).map(AlunoResponse::fromEntity);
+    public Page<AlunoResponse> listar(AlunoFiltroRequest filtro, Pageable pageable) {
+        return alunoRepository
+                .findAll(AlunoSpecification.comFiltros(filtro), pageable)
+                .map(AlunoResponse::fromEntity);
     }
 
     public AlunoResponse buscarPorId(Long id) {
