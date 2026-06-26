@@ -1,6 +1,7 @@
 package dev.menezes.mastersys.controller;
 
 
+import dev.menezes.mastersys.doc.AlunoControllerDoc;
 import dev.menezes.mastersys.dto.AlunoFiltroRequest;
 import dev.menezes.mastersys.dto.AlunoRequest;
 import dev.menezes.mastersys.dto.AlunoResponse;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/alunos")
-public class AlunoController {
+public class AlunoController implements AlunoControllerDoc {
 
     @Autowired
     AlunoService alunoService;
